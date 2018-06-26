@@ -8,7 +8,7 @@ const colors = require('colors');
 prompt.message = "";
 prompt.delimiter = '';
 
-var prefix = config.prefix;
+var prefix = "#";
 
 client.on('ready', () => {
   console.log(`Bot ready in ${client.guilds.size} server!`);
