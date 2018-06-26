@@ -11,4 +11,17 @@
   "dependencies": {
     "discord.js": "^11.3.2"
   }
-}
+},
+{
+  "name": "ytdl-core",
+  "description": "Youtube video downloader in pure javascript.",
+  "keywords": [
+    "youtube",
+    "video",
+    "download"
+  ],
+  "version": "0.20.4",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fent/node-ytdl-core.git"
+  },
