@@ -1,12 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const config = require('./config.json');
-const cmds =  require('./commands.js');
-const tool = require('./tool.js');
-const prompt = require('prompt');
-const colors = require('colors');
-prompt.message = "";
-prompt.delimiter = '';
 
 var prefix = "#";
 
