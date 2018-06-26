@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
-const cmds =  require('./commands.json');
+const cmds =  require('./commands.js');
 const tool = require('./tool.js');
 const prompt = require('prompt');
 const colors = require('colors');
@@ -51,7 +51,7 @@ client.on('message', msg => {
 });
 
 
-bot.on('message', msg => {
+client.on('message', msg => {
     if (msg.author.bot || msg.channel.type != 'text')
         return; // Do not respond to messages from bots or messages that are not from guilds.
 
@@ -62,11 +62,11 @@ bot.on('message', msg => {
     getCmdFunction(cmd)(msg);
 });
 
-bot.on('error', (e) => console.error(e));
-bot.on('warn', (e) => console.warn(e));
+client.on('error', (e) => console.error(e));
+client.on('warn', (e) => console.warn(e));
 // bot.on('debug', (e) => console.info(e));
 
-bot.login(config.token);
+client.login(config.token);
 
 function getCmdFunction(cmd) {
     const COMMANDS = {
