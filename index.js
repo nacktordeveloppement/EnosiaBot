@@ -1,7 +1,12 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const ytdl = require('ytdl-core');
+const YouTube = require('simple-youtube-api');
+const streamOptions = { seek: 0, volume: 1 };
+const broadcast = client.createVoiceBroadcast();
 
-var prefix = "=";
+var prefix = '=';
+var start = false;
 
 client.on('ready', () => {
   console.log(`Bot ready in ${client.guilds.size} server!`);
@@ -40,6 +45,32 @@ client.on('message', msg => {
 	if(msg.content === prefix + 'règlement'){
 
 	}
+
+	if (!msg.guild) return;
+	let args = msg.content.split(' ');
+	if(msg.content.startsWith('=play') && start) return msg.reply('music déja lancé !');
+
+	if (msg.content.startsWith('=play')) {
+    if (msg.member.voiceChannel) {
+      msg.member.voiceChannel.join()
+        .then(connection => {
+		  msg.reply('lancement...');
+		  start = true;
+		  let args = msg.content.split(' ');
+		  const stream = ytdl(args[1], { filter : 'audioonly' });
+		  broadcast.playStream(stream);
+		  const dispatcher = connection.playBroadcast(broadcast);
+        })
+        .catch(console.log);
+    } else {
+      msg.reply('Vous devez d\'abort rejoindre un channel!');
+    }
+  }
+
+  if(msg.content === '=stop'){
+	  start = false;
+	  broadcast.end();
+  }
 
 });
 
