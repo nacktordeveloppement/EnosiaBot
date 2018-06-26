@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-var prefix = "#";
+var prefix = "=";
 
 client.on('ready', () => {
   console.log(`Bot ready in ${client.guilds.size} server!`);
